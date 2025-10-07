@@ -1,5 +1,5 @@
-extends CharacterBody2D
-class_name EntityCharacter2D
+extends EntityCharacter2D
+class_name CharacterPlatformer2D
 
 ## Signals for major events
 signal jumped(jump_velocity: float, was_running: bool)
@@ -19,9 +19,6 @@ signal grace_period_started()
 @export_group("Collision")
 @export var floor_collision_shape: CollisionShape2D
 @export var body_collision_shape: CollisionShape2D
-# @export var air_collision_shape: CollisionShape2D
-# @export var air_down_collision_shape_1: CollisionShape2D
-# @export var air_down_collision_shape_2: CollisionShape2D
 
 
 ## Visual Settings

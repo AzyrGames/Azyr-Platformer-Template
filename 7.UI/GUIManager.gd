@@ -34,7 +34,6 @@ func _ready() -> void:
 func setup_gui_manager() -> void:
 	is_playing = true
 	set_deferred("anchors_preset", Control.PRESET_FULL_RECT)
-	# set_anchors_preset(Control.PRESET_FULL_RECT)
 	size = GameWindow.game_base_resolution
 
 	z_index = 10
@@ -62,7 +61,6 @@ func init_all_gui_panel() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	# if !is_playing: return
 	if event is InputEventKey:
 		if event.is_action_pressed("ui_cancel"):
 			handle_ui_cancel()
@@ -71,6 +69,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventJoypadButton:
 		if event.is_action_pressed("ui_cancel"):
 			handle_ui_cancel()
+
 
 func handle_ui_cancel() -> void:
 	match current_gui_panel:
@@ -87,16 +86,17 @@ func handle_ui_cancel() -> void:
 			GameManager.set_game_paused(false)
 
 
-
 func handle_debug_menu() -> void:
 	active_gui_panel[GUIPanel.DEBUG_SCREEN].visible = !active_gui_panel[GUIPanel.DEBUG_SCREEN].visible
 	pass
 
 
 func switch_gui_panel(_target_panel: GUIPanel) -> void:
+	if !_target_panel == GUIPanel.CLOSED:
+		if !active_gui_panel.has(_target_panel): return
+
 	if _target_panel == GUIPanel.START_SCREEN:
 		pass
-		# EventBus.switch_background.emit(GameData.MusicSong.MAIN_MENU)
 	if _target_panel == GUIPanel.DEBUG_SCREEN:
 		return
 	if _target_panel == GUIPanel.CLOSED:
@@ -112,12 +112,3 @@ func switch_gui_panel(_target_panel: GUIPanel) -> void:
 			active_gui_panel[current_gui_panel].visible = true
 		GameWindow.set_mouse_cursor(GameWindow.MouseCursorMode.NORMAL)
 	pass
-
-func get_gui_panel_screen_position() -> Vector2:
-	# print("camera: ", GameManager.current_camera)
-	if !GameManager.current_camera:
-		return Vector2.ZERO
-	# var _menu_camera_offset := GameWindow.GAME_BASE_RESOLUTION / 2.0
-	# var _menu_position: Vector2 = GameManager.current_camera.global_position - _menu_camera_offset
-	# return _menu_position
-	return Vector2.ZERO

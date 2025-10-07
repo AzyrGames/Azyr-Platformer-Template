@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c55lhrkiw4ysq" path="res://7.UI/Theme/AzyrTheme.tres" id="1_2nfb7"]
 [ext_resource type="Script" uid="uid://c7ijsbc08cqrs" path="res://7.UI/GUI/CreditScreen/credit_screen.gd" id="2_2nfb7"]
-[ext_resource type="StyleBox" path="res://7.UI/Theme/panel_plat_black.tres" id="3_4pbp1"]
+[ext_resource type="StyleBox" uid="uid://crpci47t7tqbd" path="res://7.UI/Theme/panel_plat_black.tres" id="3_4pbp1"]
 
 [node name="CreditScreen" type="Control"]
 layout_mode = 3
@@ -69,19 +69,15 @@ layout_mode = 2
 [node name="Line" type="Label" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "A solo game make by AzyrGames
-Made in Godot Engine
-Start Screen theme - Industraumatic
-Backgroud and boss music - Fania Katz
-Enemy and boss sprites - Mindustry"
+text = "Made in Godot Engine
+"
 horizontal_alignment = 1
 
 [node name="Thank" type="Label" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "
-And You for playing the game
-Please rate the game on https://azyrgames.itch.io/"
+text = "And You for playing the game
+"
 horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]

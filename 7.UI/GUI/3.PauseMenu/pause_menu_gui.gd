@@ -20,10 +20,8 @@ func _on_setting_button_button_up() -> void:
 
 
 func _on_go_to_start_screen_button_button_up() -> void:
-	GameManager.clear_game()
+	EventBus.exit_game.emit()
 	GuiManager.switch_gui_panel(GuiManager.GUIPanel.START_SCREEN)
-	GameManager.resume_game()
-	GameManager.is_game_active = false
 	pass
 
 

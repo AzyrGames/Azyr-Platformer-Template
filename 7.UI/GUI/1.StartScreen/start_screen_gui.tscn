@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://crpci47t7tqbd" path="res://7.UI/Theme/panel_plat_black.tres" id="2_f7fdy"]
 [ext_resource type="Script" uid="uid://c5jby6pa5hqxx" path="res://7.UI/GUI/1.StartScreen/start_screen_gui.gd" id="2_wyoph"]
 
-[node name="StartScreenGUI" type="Control"]
+[node name="StartScreenGUI" type="Control" node_paths=PackedStringArray("start_button", "setting_button", "credit_button", "quit_button")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -14,6 +14,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fmof0")
 script = ExtResource("2_wyoph")
+start_button = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/StartButton")
+setting_button = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/SettingButton")
+credit_button = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/CreditButton")
+quit_button = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/QuitButton")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -86,7 +90,7 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
-focus_neighbor_top = NodePath("../ExitGameButton")
+focus_neighbor_top = NodePath("../QuitButton")
 theme = ExtResource("1_fmof0")
 text = "Play
 "
@@ -99,7 +103,7 @@ theme = ExtResource("1_fmof0")
 text = "Setting
 "
 
-[node name="CreaditButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer"]
+[node name="CreditButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
@@ -107,20 +111,16 @@ theme = ExtResource("1_fmof0")
 text = "Credit
 "
 
-[node name="ExitGameButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
 theme = ExtResource("1_fmof0")
-text = "Exit Game"
+text = "Quit Game
+"
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_fmof0")
-
-[connection signal="button_up" from="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/StartButton" to="." method="_on_start_button_button_up"]
-[connection signal="button_up" from="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/SettingButton" to="." method="_on_setting_button_button_up"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/CreaditButton" to="." method="_on_creadit_button_pressed"]
-[connection signal="button_up" from="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/ExitGameButton" to="." method="_on_exit_game_button_button_up"]
