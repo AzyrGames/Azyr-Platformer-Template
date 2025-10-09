@@ -9,6 +9,7 @@ var current_game_state: Dictionary = {}
 
 var main_2d: Main2D
 
+var current_checkpoint: Checkpoint2D
 
 # Configuration variables
 @export var default_time_scale: float = 1.0
@@ -113,3 +114,5 @@ func freeze_frame(time_scale: float, duration: float) -> void:
 	await get_tree().create_timer(duration * time_scale, false).timeout
 	Engine.time_scale = default_time_scale
 	EventBus.game_unfrozen.emit()
+
+
