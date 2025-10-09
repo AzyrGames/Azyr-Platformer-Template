@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck38yj3c6805l"]
+[gd_scene load_steps=7 format=3 uid="uid://ck38yj3c6805l"]
 
 [ext_resource type="Theme" uid="uid://c55lhrkiw4ysq" path="res://7.UI/Theme/AzyrTheme.tres" id="1_h80o3"]
 [ext_resource type="Script" uid="uid://lyhxvng7hkv4" path="res://7.UI/GUI/2.Setting/setting_gui.gd" id="2_2p8vq"]
 [ext_resource type="StyleBox" uid="uid://crpci47t7tqbd" path="res://7.UI/Theme/panel_plat_black.tres" id="3_vw2fn"]
+[ext_resource type="PackedScene" uid="uid://duup6lpk2oq7k" path="res://7.UI/Component/ValueSlider/value_slider.tscn" id="4_nmtg8"]
+[ext_resource type="PackedScene" uid="uid://ctmouvrx5tsrg" path="res://7.UI/Component/ValueToggle/value_toggle.tscn" id="5_1jpph"]
+[ext_resource type="PackedScene" uid="uid://baeaosrxobc3w" path="res://7.UI/Component/ScreenScale/screen_scale.tscn" id="7_2rmca"]
 
-[node name="SettingMenuGUI" type="Control"]
+[node name="SettingMenuGUI" type="Control" node_paths=PackedStringArray("screen_scale", "value_toggle_fullscreen", "value_toggle_vsync", "value_slider_master", "value_slider_music", "value_slider_sfx", "value_slider_screen_shake")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,259 +16,126 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h80o3")
 script = ExtResource("2_2p8vq")
+screen_scale = NodePath("AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer/ScreenScale")
+value_toggle_fullscreen = NodePath("AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer/ValueToggleFullScreen")
+value_toggle_vsync = NodePath("AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer/ValueToggleVsyc")
+value_slider_master = NodePath("AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer/ValueSliderMasterVolume")
+value_slider_music = NodePath("AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer/ValueSliderMusicVolume")
+value_slider_sfx = NodePath("AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer/ValueSliderSFXVolume")
+value_slider_screen_shake = NodePath("AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer/ValueSliderScreenShake")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ratio = 1.7778
+
+[node name="Panel" type="Panel" parent="AspectRatioContainer"]
+layout_mode = 2
 theme = ExtResource("1_h80o3")
 theme_override_styles/panel = ExtResource("3_vw2fn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_h80o3")
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer"]
 layout_mode = 2
 theme = ExtResource("1_h80o3")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AspectRatioContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_h80o3")
+theme_override_font_sizes/font_size = 32
+text = "Setting"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="AspectRatioContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_h80o3")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(96, 0)
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 theme = ExtResource("1_h80o3")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
+[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_h80o3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="ScrollContainer" type="ScrollContainer" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_h80o3")
 
-[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_h80o3")
+theme_override_constants/separation = 4
 
-[node name="Resolution" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer"]
-unique_name_in_owner = true
+[node name="MarginContainer3" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
 
-[node name="ResolutionLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/Resolution"]
-unique_name_in_owner = true
-self_modulate = Color(0.611765, 0.611765, 0.611765, 1)
+[node name="ScreenScale" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("7_2rmca")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme = ExtResource("1_h80o3")
-text = "Resolution"
-vertical_alignment = 1
+option_text = "Resolution Scale"
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/Resolution"]
+[node name="ValueToggleFullScreen" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_1jpph")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
+option_text = "Full Screen"
 
-[node name="ResolutionButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/Resolution"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 24)
+[node name="ValueToggleVsyc" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_1jpph")]
 layout_mode = 2
-theme = ExtResource("1_h80o3")
-text = "1920x1080"
+option_text = "Vsyc"
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer"]
+[node name="ValueSliderMasterVolume" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_nmtg8")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
+option_text = "Master Volume"
 
-[node name="MasterVolumeLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer5"]
-unique_name_in_owner = true
-self_modulate = Color(0.611765, 0.611765, 0.611765, 1)
+[node name="ValueSliderMusicVolume" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_nmtg8")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme = ExtResource("1_h80o3")
-text = "Master Volume"
-vertical_alignment = 1
+option_text = "Music Volume"
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer5"]
+[node name="ValueSliderSFXVolume" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_nmtg8")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
+option_text = "SFX Valume"
 
-[node name="MasterVolumeSlider" type="HSlider" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer5"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 24)
+[node name="ValueSliderScreenShake" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_nmtg8")]
 layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("1_h80o3")
-max_value = 1.0
-step = 0.01
+option_text = "Screen Shake"
 
-[node name="MarginContainer3" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer5"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-theme = ExtResource("1_h80o3")
-
-[node name="MasterVolumeSliderValue" type="LineEdit" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer5"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-theme = ExtResource("1_h80o3")
-text = "100"
-alignment = 2
-max_length = 3
-emoji_menu_enabled = false
-virtual_keyboard_type = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
-
-[node name="MusicVolumeLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer3"]
-unique_name_in_owner = true
-self_modulate = Color(0.611765, 0.611765, 0.611765, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme = ExtResource("1_h80o3")
-text = "Music Volume"
-vertical_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
-
-[node name="MusicVolumeSlider" type="HSlider" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer3"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 24)
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("1_h80o3")
-max_value = 1.0
-step = 0.01
-
-[node name="MarginContainer3" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-theme = ExtResource("1_h80o3")
-
-[node name="MusicVolumeSliderValue" type="LineEdit" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer3"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-theme = ExtResource("1_h80o3")
-text = "100"
-alignment = 2
-max_length = 3
-emoji_menu_enabled = false
-virtual_keyboard_type = 2
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
-
-[node name="SFXVolumeLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer4"]
-unique_name_in_owner = true
-self_modulate = Color(0.611765, 0.611765, 0.611765, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme = ExtResource("1_h80o3")
-text = "SFX Volume"
-vertical_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer4"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
-
-[node name="SFXVolumeSlider" type="HSlider" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer4"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 24)
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("1_h80o3")
-max_value = 1.0
-step = 0.01
-
-[node name="MarginContainer3" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-theme = ExtResource("1_h80o3")
-
-[node name="SFXVolumeSliderValue" type="LineEdit" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer4"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-theme = ExtResource("1_h80o3")
-text = "100"
-alignment = 2
-max_length = 3
-emoji_menu_enabled = false
-virtual_keyboard_type = 2
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme = ExtResource("1_h80o3")
 
-[node name="BackButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer4"]
+[node name="BackButton" type="Button" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 36)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_h80o3")
 text = "Back"
 
-[node name="ApplyButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer4"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_h80o3")
-text = "Apply"
-
-[node name="MarginContainer3" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(96, 48)
+[node name="MarginContainer3" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 8
 theme = ExtResource("1_h80o3")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme = ExtResource("1_h80o3")
+[connection signal="button_up" from="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer4/BackButton" to="." method="_on_back_button_button_up"]
 
-[connection signal="button_up" from="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/Resolution/ResolutionButton" to="." method="_on_resolution_button_button_up"]
-[connection signal="value_changed" from="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer5/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer3/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer4/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
-[connection signal="button_up" from="Panel/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer4/BackButton" to="." method="_on_back_button_button_up"]
+[editable path="AspectRatioContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer/ScrollContainer/VBoxContainer/ValueSliderScreenShake"]

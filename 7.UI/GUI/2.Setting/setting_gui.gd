@@ -7,113 +7,79 @@ enum AudioBus {
 	SFX
 }
 
-@onready var resolution: HBoxContainer = %Resolution
-@onready var resolution_label: Label = %ResolutionLabel
-@onready var resolution_button: Button = %ResolutionButton
 @onready var back_button: Button = %BackButton
 
-# @onready var screen_shake_slicer: HSlider = %ScreenShakeSlicer
 
-@onready var master_volume_slider: HSlider = %MasterVolumeSlider
-@onready var music_volume_slider: HSlider = %MusicVolumeSlider
-@onready var sfx_volume_slider: HSlider = %SFXVolumeSlider
-
-@onready var master_volume_slider_value: LineEdit = %MasterVolumeSliderValue
-@onready var music_volume_slider_value: LineEdit = %MusicVolumeSliderValue
-@onready var sfx_volume_slider_value: LineEdit = %SFXVolumeSliderValue
+@export var screen_scale : ScreenScale
+@export var value_toggle_fullscreen : ValueToggle
+@export var value_toggle_vsync : ValueToggle
 
 
-# @onready var screen_shake_label: Label = %ScreenShakeLabel
-@onready var master_volume_label: Label = %MasterVolumeLabel
-@onready var music_volume_label: Label = %MusicVolumeLabel
-@onready var sfx_volume_label: Label = %SFXVolumeLabel
+@export var value_slider_master: ValueSlider
+@export var value_slider_music: ValueSlider 
+@export var value_slider_sfx: ValueSlider
+
+@export var value_slider_screen_shake: ValueSlider
 
 var user_settings: UserSettings
 
-var resolution_scaling_list := [
-	GameWindow.game_base_resolution,
-	GameWindow.game_base_resolution * 2,
-	GameWindow.game_base_resolution * 3,
-]
 
 func _ready() -> void:
-	resolution_button.grab_focus()
-	user_settings = UserSettings.load_or_create()
-	_init_resolution_button()
-	# screen_shake_slicer.value = user_settings.screen_shake
-	master_volume_slider.value = user_settings.master_volume
-	music_volume_slider.value = user_settings.music_volume
-	sfx_volume_slider.value = user_settings.sfx_volume
+	connect_event_bus()
 	setup_setting_gui()
+	pass
 
 func setup_setting_gui() -> void:
-	resolution_button.focus_entered.connect(
-		resolution_label.set_self_modulate.bind(Color8(255, 255, 255))
-		)
-	resolution_button.focus_exited.connect(
-		resolution_label.set_self_modulate.bind(Color8(156, 156, 156))
-		)
+	user_settings = UserSettings.load_or_create()
+	screen_scale.current_screen_scale = user_settings.screen_resolution_scaling
+	if value_toggle_fullscreen:
+		value_toggle_fullscreen.is_on = user_settings.is_full_screen
+		GameWindow.set_full_screen(value_toggle_fullscreen.is_on)
 
-	# screen_shake_slicer.focus_entered.connect(
-	# 	screen_shake_label.set_self_modulate.bind(Color8(255, 255, 255))
-	# 	)
-	# screen_shake_slicer.focus_exited.connect(
-	# 	screen_shake_label.set_self_modulate.bind(Color8(156, 156, 156))
-	# 	)
+	if value_toggle_vsync:
+		value_toggle_vsync.is_on = user_settings.is_vsync
+		GameWindow.set_vsync(value_toggle_vsync.is_on)
 
-	master_volume_slider.focus_entered.connect(
-		master_volume_label.set_self_modulate.bind(Color8(255, 255, 255))
-		)
-	master_volume_slider.focus_exited.connect(
-		master_volume_label.set_self_modulate.bind(Color8(156, 156, 156))
-		)
-	music_volume_slider.focus_entered.connect(
-		music_volume_label.set_self_modulate.bind(Color8(255, 255, 255))
-		)
-	music_volume_slider.focus_exited.connect(
-		music_volume_label.set_self_modulate.bind(Color8(156, 156, 156))
-		)
-	sfx_volume_slider.focus_entered.connect(
-		sfx_volume_label.set_self_modulate.bind(Color8(255, 255, 255))
-		)
-	sfx_volume_slider.focus_exited.connect(
-		sfx_volume_label.set_self_modulate.bind(Color8(156, 156, 156))
-		)
+	value_slider_master.slider_value.value = user_settings.master_volume
+	value_slider_music.slider_value.value = user_settings.music_volume
+	value_slider_sfx.slider_value.value = user_settings.sfx_volume
+	value_slider_screen_shake.slider_value.value = user_settings.screen_shake
+
+	connect_window_related()
+	connect_value_slider()
+	pass
 	
-func _init_resolution_scalling_list() -> Array:
-	# var max_window_resolution := DisplayServer.screen_get_size()
-	return []
 
 func _load_user_settings() -> void:
 	pass
 
-func _change_resolution_button_value() -> void:
-	user_settings.increase_screen_resolution_index()
-	resolution_button.text = _format_sreen_resolution_value(
-		user_settings.screen_resolution_scaling
-		)
+
+func connect_event_bus() -> void:
+	EventBus.is_full_screen.connect(_on_is_full_screen)
 
 
-func _format_sreen_resolution_value(_screen_resolution_calling: int) -> String:
-	var formated_value := ""
-	match _screen_resolution_calling:
-		4:
-			formated_value = "FullScreen"
-		_:
-			formated_value = str(_screen_resolution_calling) + "x"
-	return formated_value
 
-func _init_resolution_button() -> void:
-	resolution_button.text = _format_sreen_resolution_value(
-		user_settings.screen_resolution_scaling
-		)
-	GameWindow.set_resolution_scaling(user_settings.screen_resolution_scaling)
+func connect_window_related() -> void:
+	if screen_scale:
+		screen_scale.value_changed.connect(_on_screen_scale_value_changed)
+	if value_toggle_fullscreen:
+		value_toggle_fullscreen.value_changed.connect(_on_value_toggle_fullscreen_value_changed)
+	if value_toggle_vsync:
+		value_toggle_vsync.value_changed.connect(_value_toggle_vsync_value_chagned)
+	pass
 
-func _on_resolution_button_button_up() -> void:
-	_change_resolution_button_value()
-	GameWindow.set_resolution_scaling(user_settings.screen_resolution_scaling)
-	GameWindow.set_mouse_cursor(GameWindow.MouseCursorMode.NORMAL)
-	user_settings.save()
+
+func connect_value_slider() -> void:
+	if value_slider_master:
+		value_slider_master.value_changed.connect(_on_value_slider_master_value_changed)
+	if value_slider_music:
+		value_slider_music.value_changed.connect(_on_value_slider_music_value_changed)
+	if value_slider_sfx:
+		value_slider_sfx.value_changed.connect(_on_value_slider_sfx_value_changed)
+	if value_slider_screen_shake:
+		value_slider_screen_shake.value_changed.connect(_on_value_slider_screen_shake_value_changed)
+	pass
+
 
 
 func go_back_setting_menu() -> void:
@@ -128,29 +94,55 @@ func set_audio_bus_volume(_bus_name: String, value: float) -> void:
 	var _user_settings := UserSettings.load_or_create()
 
 
+func _on_is_full_screen(_value: bool) -> void:
+	print("value_toggle_fullscreen: ", value_toggle_fullscreen)
+	value_toggle_fullscreen.is_on = _value
+
 func _on_back_button_button_up() -> void:
 	go_back_setting_menu()
 
-func _on_screen_shake_slicer_value_changed(value: float) -> void:
-	user_settings.screen_shake = value
+
+func _on_screen_scale_value_changed(_value: float) -> void:
+	GameWindow.set_resolution_scaling(int(_value))
+	user_settings.screen_resolution_scaling = int(_value)
 	user_settings.save()
-	
-func _on_master_volume_slider_value_changed(value: float) -> void:
+
+	pass
+
+
+func _on_value_toggle_fullscreen_value_changed(_value: float) -> void:
+	GameWindow.set_full_screen(_value)
+	user_settings.is_full_screen = _value
+	user_settings.save()
+	pass
+
+
+func _value_toggle_vsync_value_chagned(_value: float) -> void:
+	GameWindow.set_vsync(_value)
+	user_settings.is_vsync = _value
+	user_settings.save()
+	pass
+
+
+
+func _on_value_slider_master_value_changed(value: float) -> void:
 	set_audio_bus_volume("Master", value)
-	master_volume_slider_value.text = str(int(value * 100))
 	user_settings.master_volume = value
 	user_settings.save()
 	
 
-func _on_music_volume_slider_value_changed(value: float) -> void:
+func _on_value_slider_music_value_changed(value: float) -> void:
 	set_audio_bus_volume("Music", value)
-	music_volume_slider_value.text = str(int(value * 100))
 	user_settings.music_volume = value
 	user_settings.save()
 
 
-func _on_sfx_volume_slider_value_changed(value: float) -> void:
+func _on_value_slider_sfx_value_changed(value: float) -> void:
 	set_audio_bus_volume("SFX", value)
-	sfx_volume_slider_value.text = str(int(value * 100))
 	user_settings.sfx_volume = value
+	user_settings.save()
+
+
+func _on_value_slider_screen_shake_value_changed(value: float) -> void:
+	user_settings.screen_shake = value
 	user_settings.save()

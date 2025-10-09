@@ -1,9 +1,6 @@
 extends Node
 # class_name SaveLoadManager
 
-## Enhanced Save/Load system with multiple save slots
-##
-## Features:
 ## - Multiple save slots (configurable)
 ## - Auto-save functionality
 ## - Save validation and error handling

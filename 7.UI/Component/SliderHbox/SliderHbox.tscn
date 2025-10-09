@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://diig3v14moikt"]
+
+[ext_resource type="Texture2D" uid="uid://dye8y8vd03x3r" path="res://7.UI/Asset/texture_button1.png" id="1_0tcp1"]
+[ext_resource type="Texture2D" uid="uid://brcjmjowqgqny" path="res://7.UI/Asset/texture_button3.png" id="2_e4vta"]
+[ext_resource type="Texture2D" uid="uid://cb5b8c0ou3r6g" path="res://7.UI/Asset/texture_button2.png" id="3_s2sgb"]
+[ext_resource type="Texture2D" uid="uid://dkofqw2g3hr3q" path="res://7.UI/Asset/texture_button4.png" id="4_u63e4"]
+[ext_resource type="Theme" uid="uid://c55lhrkiw4ysq" path="res://7.UI/Theme/AzyrTheme.tres" id="5_7ldob"]
+
+[node name="MarginContainer6" type="MarginContainer"]
+offset_right = 232.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 2
+theme = ExtResource("5_7ldob")
+theme_type_variation = &"SliderPanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="LineEditValue" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+theme = ExtResource("5_7ldob")
+text = "100"
+alignment = 2
+max_length = 3
+emoji_menu_enabled = false
+virtual_keyboard_type = 2
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="ButtonLeft" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("1_0tcp1")
+texture_pressed = ExtResource("2_e4vta")
+texture_hover = ExtResource("3_s2sgb")
+texture_disabled = ExtResource("4_u63e4")
+texture_focused = ExtResource("3_s2sgb")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="SliderValue" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("5_7ldob")
+value = 100.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="ButtonRight" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("1_0tcp1")
+texture_pressed = ExtResource("2_e4vta")
+texture_hover = ExtResource("3_s2sgb")
+texture_disabled = ExtResource("4_u63e4")
+texture_focused = ExtResource("3_s2sgb")
+flip_h = true
+
+[node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2

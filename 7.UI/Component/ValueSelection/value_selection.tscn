@@ -1,0 +1,140 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjwhvk0dv70pw"]
+
+[ext_resource type="Theme" uid="uid://c55lhrkiw4ysq" path="res://7.UI/Theme/AzyrTheme.tres" id="1_wwpjk"]
+[ext_resource type="Texture2D" uid="uid://dye8y8vd03x3r" path="res://7.UI/Asset/texture_button1.png" id="2_00dj1"]
+[ext_resource type="Script" uid="uid://c5jrirqgsoou3" path="res://7.UI/Component/ValueSelection/value_selection.gd" id="2_20ti2"]
+[ext_resource type="Texture2D" uid="uid://brcjmjowqgqny" path="res://7.UI/Asset/texture_button3.png" id="3_20ti2"]
+[ext_resource type="Texture2D" uid="uid://cb5b8c0ou3r6g" path="res://7.UI/Asset/texture_button2.png" id="4_kwy1p"]
+[ext_resource type="Texture2D" uid="uid://dkofqw2g3hr3q" path="res://7.UI/Asset/texture_button4.png" id="5_4bghx"]
+
+[node name="ValueSelection" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_wwpjk")
+script = ExtResource("2_20ti2")
+metadata/_custom_type_script = "uid://c5jrirqgsoou3"
+
+[node name="ValueSlider" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="ValueSlider"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="ValueSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="ValueSlider/MarginContainer3"]
+layout_mode = 2
+theme = ExtResource("1_wwpjk")
+theme_type_variation = &"SlidePanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ValueSlider/MarginContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ValueSlider/MarginContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="LabelSlider" type="Label" parent="ValueSlider/MarginContainer3/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0.611765, 0.611765, 0.611765, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_wwpjk")
+text = "Master Volume"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ValueSlider/MarginContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ValueSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel2" type="Panel" parent="ValueSlider/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("1_wwpjk")
+theme_type_variation = &"SliderPanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ValueSlider/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="ButtonLeft" type="TextureButton" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("2_00dj1")
+texture_pressed = ExtResource("3_20ti2")
+texture_hover = ExtResource("4_kwy1p")
+texture_disabled = ExtResource("5_4bghx")
+texture_focused = ExtResource("4_kwy1p")
+
+[node name="MarginContainer2" type="MarginContainer" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="ButtonValue" type="Button" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_wwpjk")
+theme_type_variation = &"ButtonText"
+text = "OFF"
+icon_alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_wwpjk")
+text = "1920x1080"
+icon_alignment = 1
+item_count = 2
+popup/item_0/text = "Test"
+popup/item_0/id = 0
+popup/item_1/text = "ABC"
+popup/item_1/id = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="ButtonRight" type="TextureButton" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("2_00dj1")
+texture_pressed = ExtResource("3_20ti2")
+texture_hover = ExtResource("4_kwy1p")
+texture_disabled = ExtResource("5_4bghx")
+texture_focused = ExtResource("4_kwy1p")
+flip_h = true
+
+[node name="MarginContainer5" type="MarginContainer" parent="ValueSlider/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="ValueSlider"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2

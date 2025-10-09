@@ -8,7 +8,7 @@ extends Control
 
 
 func _ready() -> void:
-	start_button.grab_focus()
+	start_button.grab_focus.call_deferred()
 	connect_button()
 
 

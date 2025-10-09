@@ -12,90 +12,74 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 theme = ExtResource("1_fmof0")
 script = ExtResource("2_wyoph")
-start_button = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/StartButton")
-setting_button = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/SettingButton")
-credit_button = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/CreditButton")
-quit_button = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer/QuitButton")
+start_button = NodePath("AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer/VBoxContainer2/StartButton")
+setting_button = NodePath("AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer/VBoxContainer2/SettingButton")
+credit_button = NodePath("AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer/VBoxContainer2/CreditButton")
+quit_button = NodePath("AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer/VBoxContainer2/QuitButton")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ratio = 1.7778
+
+[node name="Panel" type="Panel" parent="AspectRatioContainer"]
+layout_mode = 2
 theme_override_styles/panel = ExtResource("2_f7fdy")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_fmof0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("1_fmof0")
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-theme = ExtResource("1_fmof0")
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_fmof0")
-
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-theme = ExtResource("1_fmof0")
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
-theme = ExtResource("1_fmof0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="AspectRatioContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="Label" type="Label" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
 theme = ExtResource("1_fmof0")
 theme_override_font_sizes/font_size = 48
-text = "AzyrGame Template
-"
+text = "AzyrGame Template"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
+theme = ExtResource("1_fmof0")
 
-[node name="StartButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer"]
+[node name="StartButton" type="Button" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
+focus_next = NodePath("../SettingButton")
+focus_previous = NodePath("../QuitButton")
 theme = ExtResource("1_fmof0")
 text = "Play
 "
 
-[node name="SettingButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer"]
+[node name="SettingButton" type="Button" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
@@ -103,7 +87,7 @@ theme = ExtResource("1_fmof0")
 text = "Setting
 "
 
-[node name="CreditButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer"]
+[node name="CreditButton" type="Button" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
@@ -111,7 +95,7 @@ theme = ExtResource("1_fmof0")
 text = "Credit
 "
 
-[node name="QuitButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer"]
+[node name="QuitButton" type="Button" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
@@ -120,7 +104,11 @@ theme = ExtResource("1_fmof0")
 text = "Quit Game
 "
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_fmof0")
+
+[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3

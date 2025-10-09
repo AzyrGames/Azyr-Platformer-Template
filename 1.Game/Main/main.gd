@@ -49,10 +49,11 @@ func clear_game() -> void:
 
 func add_game() -> bool:
 	game_2d = get_game_node()
-	if !game_2d: return false
+	if !game_2d:
+		print("Not game")
+		return false
 	add_child(game_2d)
 	return true
-	pass
 
 
 func get_game_node() -> Game2D:

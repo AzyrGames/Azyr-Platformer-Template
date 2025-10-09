@@ -67,6 +67,7 @@ func quit_game() -> void:
 
 func clear_game() -> void:
 	main_2d.clear_game()
+	set_game_paused(false)
 
 
 # Load saved game state

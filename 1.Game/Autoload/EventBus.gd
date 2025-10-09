@@ -10,6 +10,7 @@ signal component_disabled(component_name: String)
 
 
 
+
 signal start_game
 signal pause_game
 
@@ -21,3 +22,6 @@ signal game_paused(_paused: bool)
 signal game_exited
 signal game_frozen(time_scale: float, duration: float)
 signal game_unfrozen()
+
+
+signal is_full_screen(_value: bool)

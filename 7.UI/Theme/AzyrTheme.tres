@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=59 format=4 uid="uid://c55lhrkiw4ysq"]
+[gd_resource type="Theme" load_steps=63 format=4 uid="uid://c55lhrkiw4ysq"]
 
 [ext_resource type="FontFile" uid="uid://ca1re3aydie38" path="res://7.UI/Font/pixel_unicode/Pixel-UniCode.ttf" id="1_54pbw"]
 
@@ -1013,7 +1013,15 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knqnj"]
-bg_color = Color(0.121569, 0.121569, 0.121569, 0)
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktw4v"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iy64h"]
+bg_color = Color(0.3685264, 0.4379466, 0.45392227, 0.5882353)
+corner_detail = 4
+shadow_color = Color(0, 0, 0, 0)
 
 [sub_resource type="Image" id="Image_6pqlb"]
 data = {
@@ -1054,13 +1062,19 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chikl"]
+bg_color = Color(0.25751707, 0.27009106, 0.3287169, 0.43137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7f4h"]
+bg_color = Color(0.31688982, 0.2984146, 0.2814143, 0.5882353)
+
 [resource]
-Button/colors/font_color = Color(0.611765, 0.611765, 0.611765, 1)
+Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
 Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 0)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 Button/colors/icon_focus_color = Color(1, 1, 1, 1)
@@ -1080,6 +1094,7 @@ Button/styles/hover = SubResource("StyleBoxEmpty_gq605")
 Button/styles/hover_pressed = SubResource("StyleBoxEmpty_0veg3")
 Button/styles/normal = SubResource("StyleBoxFlat_kr837")
 Button/styles/pressed = SubResource("StyleBoxEmpty_w77lv")
+ButtonText/base_type = &"Button"
 CheckButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 CheckButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 CheckButton/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -1131,15 +1146,16 @@ Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_54pbw")
 Label/styles/focus = null
 Label/styles/normal = SubResource("StyleBoxEmpty_8hd1u")
+LineEdit/colors/caret_color = Color(0.95, 0.95, 0.95, 0)
 LineEdit/constants/minimum_character_width = 0
 LineEdit/fonts/font = ExtResource("1_54pbw")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_8hd1u")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_3gxay")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_kfokp")
-OptionButton/colors/font_color = Color(0.611765, 0.611765, 0.611765, 1)
+OptionButton/colors/font_color = Color(0.08539999, 0.61, 0.21655002, 1)
 OptionButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 OptionButton/colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
-OptionButton/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+OptionButton/colors/font_hover_color = Color(0.43699998, 0.95, 0.83884996, 1)
 OptionButton/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 OptionButton/colors/font_outline_color = Color(0, 0, 0, 1)
 OptionButton/colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -1160,6 +1176,13 @@ OptionButton/styles/normal_mirrored = SubResource("StyleBoxFlat_xscst")
 OptionButton/styles/pressed = SubResource("StyleBoxEmpty_bfcqo")
 OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_0mgio")
 Panel/styles/panel = SubResource("StyleBoxFlat_knqnj")
+PopupMenu/colors/font_color = Color(0.88, 0.88, 0.88, 1)
+PopupMenu/colors/font_hover_color = Color(0.12156863, 0.8117647, 0.9490196, 1)
+PopupMenu/colors/font_outline_color = Color(0, 0, 0, 0)
+PopupMenu/colors/font_separator_color = Color(0.88, 0.88, 0.88, 1)
+PopupMenu/fonts/font = ExtResource("1_54pbw")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_ktw4v")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_iy64h")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/colors/font_selected_color = Color(0, 0, 0, 0)
@@ -1193,5 +1216,9 @@ RichTextLabel/fonts/normal_font = ExtResource("1_54pbw")
 RichTextLabel/icons/horizontal_rule = SubResource("ImageTexture_xgx86")
 RichTextLabel/styles/focus = SubResource("StyleBoxFlat_8s086")
 RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_72vim")
+SlidePanel/base_type = &"Panel"
+SlidePanel/styles/panel = SubResource("StyleBoxFlat_chikl")
+SliderPanel/base_type = &"Panel"
+SliderPanel/styles/panel = SubResource("StyleBoxFlat_q7f4h")
 TextEdit/fonts/font = ExtResource("1_54pbw")
 VBoxContainer/constants/separation = 0

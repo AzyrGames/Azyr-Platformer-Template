@@ -84,6 +84,9 @@ func handle_ui_cancel() -> void:
 		GUIPanel.PAUSE_MENU:
 			switch_gui_panel(GUIPanel.CLOSED)
 			GameManager.set_game_paused(false)
+		GUIPanel.CREDIT_SCREEN:
+			switch_gui_panel(GUIPanel.START_SCREEN)
+
 
 
 func handle_debug_menu() -> void:
@@ -95,8 +98,6 @@ func switch_gui_panel(_target_panel: GUIPanel) -> void:
 	if !_target_panel == GUIPanel.CLOSED:
 		if !active_gui_panel.has(_target_panel): return
 
-	if _target_panel == GUIPanel.START_SCREEN:
-		pass
 	if _target_panel == GUIPanel.DEBUG_SCREEN:
 		return
 	if _target_panel == GUIPanel.CLOSED:

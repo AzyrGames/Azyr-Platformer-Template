@@ -38,6 +38,8 @@ script = ExtResource("3_aqx03")
 head_bump_velocity = -50.0
 variable_fast_fall_speed = -1.0
 fast_fall_multiplier = 1.4
+air_control_time_to_max_ticks = 20
+air_friction_time_to_stop_ticks = 40
 metadata/_custom_type_script = "uid://bq0337t82fgc2"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvdhq"]

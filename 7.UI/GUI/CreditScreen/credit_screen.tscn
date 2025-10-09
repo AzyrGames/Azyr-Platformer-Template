@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c7ijsbc08cqrs" path="res://7.UI/GUI/CreditScreen/credit_screen.gd" id="2_2nfb7"]
 [ext_resource type="StyleBox" uid="uid://crpci47t7tqbd" path="res://7.UI/Theme/panel_plat_black.tres" id="3_4pbp1"]
 
-[node name="CreditScreen" type="Control"]
+[node name="CreditScreen" type="Control" node_paths=PackedStringArray("back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,49 +13,53 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_2nfb7")
 script = ExtResource("2_2nfb7")
+back_button = NodePath("AspectRatioContainer/HBoxContainer2/MarginContainer/HBoxContainer2/BackButton")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_2nfb7")
+ratio = 1.7778
+
+[node name="Panel" type="Panel" parent="AspectRatioContainer"]
+layout_mode = 2
 theme_override_styles/panel = ExtResource("3_4pbp1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 27)
+[node name="HBoxContainer2" type="HBoxContainer" parent="AspectRatioContainer"]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(0, 24)
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="AspectRatioContainer/HBoxContainer2/MarginContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="BackButton" type="Button" parent="AspectRatioContainer/HBoxContainer2/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Back"
+alignment = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="MainContent" type="VBoxContainer" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/MainContent"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Credit"
@@ -63,42 +67,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/MainContent"]
 layout_mode = 2
 
-[node name="Line" type="Label" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="Line" type="Label" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/MainContent/VBoxContainer"]
 layout_mode = 2
 text = "Made in Godot Engine
 "
 horizontal_alignment = 1
 
-[node name="Thank" type="Label" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer"]
+[node name="Thank" type="Label" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer/MainContent/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "And You for playing the game
 "
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 24)
+[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 3
 
-[node name="BackButton" type="Button" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 24)
+[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Back"
-alignment = 0
-
-[node name="MarginContainer3" type="MarginContainer" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 27)
-layout_mode = 2
-
-[connection signal="button_up" from="Panel/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/BackButton" to="." method="_on_back_button_button_up"]
+size_flags_horizontal = 3
